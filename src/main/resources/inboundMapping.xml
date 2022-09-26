@@ -1,0 +1,14 @@
+<beanio xmlns="http://www.beanio.org/2012/03"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.beanio.org/2012/03 http://www.beanio.org/2012/03/mapping.xsd">
+
+    <stream name="countryStream" format="csv">
+        <record name="countryRecord" class="com.iamatum.camel.beans.Country">
+            <field name="iso" minOccurs="1"/>
+            <field name="name" minOccurs="1"/>
+            <field name="capital" minOccurs="1"/>
+        </record>
+    </stream>
+
+
+</beanio>
