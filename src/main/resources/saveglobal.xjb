@@ -1,0 +1,20 @@
+<jaxb:bindings
+ xmlns:jaxb="https://jakarta.ee/xml/ns/jaxb"
+xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+           jaxb:extensionBindingPrefixes="xjc"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema" version="3.0">
+
+    <jaxb:globalBindings>
+        <xjc:simple/>
+        <jaxb:serializable uid="1"/>
+
+        <!-- date time adapter -->
+        <jaxb:javaType name="java.util.Calendar" xmlType="xsi:dateTime"
+                       parseMethod="jakarta.xml.bind.DatatypeConverter.parseDateTime"
+                       printMethod="jakarta.xml.bind.DatatypeConverter.printDateTime" />
+
+    </jaxb:globalBindings>
+
+
+
+</jaxb:bindings>

@@ -15,6 +15,7 @@ public class CsvSplitterRoute extends RouteBuilder {
         from("file:src/data/input?fileName=input.csv")
                 .routeId("csvSplitterRouteId")
                 .split(body().tokenize("\n",1,true))
+                .streaming()
                 .unmarshal(beanIODataFormat)
                 .process(exchange -> {
                     Country country = exchange.getIn().getBody(Country.class);

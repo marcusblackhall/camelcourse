@@ -7,9 +7,6 @@ import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import static net.bytebuddy.implementation.MethodDelegation.to;
-import static org.apache.camel.builder.endpoint.dsl.XQueryEndpointBuilderFactory.ResultFormat.List;
-
 @Component
 public class BatchJpaRoute extends RouteBuilder {
 
@@ -19,6 +16,7 @@ public class BatchJpaRoute extends RouteBuilder {
     public void configure() throws Exception {
 
         from("timer:readDb?period=1000")
+                .routeId("RemoveRouteId")
                 .to("jpa:" + Country.class.getName() + "?namedQuery=findAllCountries")
                 .split(body())
                 .process(inboundProcessor)

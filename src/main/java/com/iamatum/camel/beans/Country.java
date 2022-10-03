@@ -2,10 +2,7 @@ package com.iamatum.camel.beans;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
@@ -16,6 +13,7 @@ public class Country implements Serializable {
 
     @Id
     private String iso;
-    private String  name;
+    @Column(name="country_name")
+    private String  countryName;
     private String capital;
 }
