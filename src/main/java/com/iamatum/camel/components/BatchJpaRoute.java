@@ -1,6 +1,6 @@
 package com.iamatum.camel.components;
 
-import com.iamatum.camel.beans.Country;
+import com.iamatum.camel.domain.Country;
 import com.iamatum.camel.processors.InboundProcessor;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;

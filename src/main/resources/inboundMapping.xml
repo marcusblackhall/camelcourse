@@ -3,7 +3,7 @@
         xsi:schemaLocation="http://www.beanio.org/2012/03 http://www.beanio.org/2012/03/mapping.xsd">
 
     <stream name="countryStream" format="csv">
-        <record name="countryRecord" class="com.iamatum.camel.beans.Country">
+        <record name="countryRecord" class="com.iamatum.camel.domain.Country">
             <field name="iso" minOccurs="1"/>
             <field name="countryName" minOccurs="1"/>
             <field name="capital" minOccurs="1"/>

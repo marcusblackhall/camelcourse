@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
-@EntityScan(basePackages = {"com.iamatum.camel.beans"})
+@EntityScan(basePackages = {"com.iamatum.camel.domain"})
 public class CamelFeaturesApplication {
 
 	public static void main(String[] args) {

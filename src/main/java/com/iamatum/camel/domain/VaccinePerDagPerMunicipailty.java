@@ -9,6 +9,8 @@ import java.sql.Date;
 @Entity
 @Data
 @Table(name = "admissions")
+
+@NamedQuery(name = "VaccinePerDagPerMunicipailty.getMaxStatsDate", query = "select max(v.statsDate) from VaccinePerDagPerMunicipailty v")
 public class VaccinePerDagPerMunicipailty {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -2,10 +2,9 @@ package com.iamatum.camel.components;
 
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
-import org.springframework.stereotype.Component;
 
-//Currently disabled
-@Component
+
+//@Component
 public class FetchDataRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
@@ -21,7 +20,8 @@ public class FetchDataRoute extends RouteBuilder {
         from("timer:rivmTimer?period=1000&repeat-Count=1")
                 .routeId("rivmTimerId")
                 .to("direct:vaccinedata")
-                .to("direct:saveData");
+                .to("direct:saveData")
+                .log(LoggingLevel.INFO,"${headers}");
 
 
     }

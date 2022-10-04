@@ -1,4 +1,4 @@
-package com.iamatum.camel.beans;
+package com.iamatum.camel.domain;
 
 import lombok.Data;
 

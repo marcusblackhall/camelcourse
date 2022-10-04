@@ -7,6 +7,7 @@ import com.iamatum.camel.processors.ProcessBatch;
 import com.iamatum.camel.aggregates.CollectInListStrategy;
 import com.iamatum.camel.mappers.RivmDataToVaccinePojo;
 import com.iamatum.camel.processors.CsvProcessor;
+import com.iamatum.camel.processors.UpdateEvent;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.dataformat.bindy.csv.BindyCsvDataFormat;
@@ -19,8 +20,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConvertCsvFileRoute extends RouteBuilder {
 
-
-
     @Autowired
     ProcessBatch processBatch;
     @Autowired
@@ -31,6 +30,9 @@ public class ConvertCsvFileRoute extends RouteBuilder {
 
     @Autowired
     AddHeader addHeader;
+
+    @Autowired
+    UpdateEvent updateEvent;
 
     @Autowired
     CsvProcessor csvProcessor;
@@ -51,26 +53,23 @@ public class ConvertCsvFileRoute extends RouteBuilder {
         from("file:src/data/input?fileName=rivmData.csv")
                 .routeId("rivmCsvSplitId")
                 .onCompletion()
+                .bean(updateEvent,"updateLastRunDate")
                 .log(LoggingLevel.INFO,"Everything is completed")
                 .end()
                 .process(addHeader)
                 .unmarshal(bindy)
-
                 .split(body())
-
                 .streaming()
                 .filter().method(notProcessedData,"notProcessed")
                 .bean(rivmDataToVaccinePojo)
-
                 .aggregate(constant(true),collectInListStrategy)
                 .completionSize(100)
                 .completionTimeout(500)
-                .to("direct:handleAdmissions")
-
+                .to("seda:handleAdmissions")
                 .end();
 
-        from("direct:handleAdmissions")
-                .threads(5)
+        from("seda:handleAdmissions?concurrentConsumers=5")
+                .routeId("storeToDBId")
                 .process(processBatch);
 
     }

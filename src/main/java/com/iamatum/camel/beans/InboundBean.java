@@ -1,5 +1,6 @@
 package com.iamatum.camel.beans;
 
+import com.iamatum.camel.domain.Country;
 import org.apache.camel.Exchange;
 
 public class InboundBean {

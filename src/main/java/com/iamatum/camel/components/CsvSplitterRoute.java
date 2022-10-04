@@ -1,6 +1,6 @@
 package com.iamatum.camel.components;
 
-import com.iamatum.camel.beans.Country;
+import com.iamatum.camel.domain.Country;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.dataformat.beanio.BeanIODataFormat;
 import org.springframework.stereotype.Component;

@@ -29,11 +29,9 @@ public class ProcessBatch implements Processor {
     private final JdbcTemplate jdbcTemplate;
 
     @Override
-    public void process(Exchange exchange) throws Exception {
+    public void process(Exchange exchange) {
 
         java.util.List<VaccinePerDagPerMunicipailty> data = (java.util.List<VaccinePerDagPerMunicipailty>) exchange.getIn().getBody();
-        String name = Thread.currentThread().getName();
-
 
         BatchPreparedStatementSetter batchPreparedStatementSetter = new BatchPreparedStatementSetter() {
             @Override
